@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Fence Loops_搜索.cpp">
+    <ClCompile Include="[USACO]Drainage Ditches_[网络流].cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
