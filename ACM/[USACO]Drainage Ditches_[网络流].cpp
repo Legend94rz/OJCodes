@@ -39,9 +39,9 @@ int sap(int p, int f)
 				rest -= k; e[ege] -= k; e[ege ^ 1] += k;
 				if (h[S] >= n)
 					return f - rest;
+				if (rest == 0)break;
 			}
-			if (h[b] < minh)
-				minh = h[b];
+			if (h[b] < minh)minh = h[b];
 		}
 		ege = nxt[ege];
 	}
@@ -56,9 +56,9 @@ int sap(int p, int f)
 }
 int main()
 {
-	//freopen("ditch.in", "r", stdin); freopen("ditch.out", "w", stdout);
+	freopen("ditch.in", "r", stdin); freopen("ditch.out", "w", stdout);
 	tot = 1;
-	cin >> n >> m;
+	cin >> m >> n;
 	S = 1; T = n;
 	for (int i = 0; i < m; i++)
 	{
