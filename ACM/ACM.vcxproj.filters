@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]The Perfect Stall_最大匹配.cpp">
+    <ClCompile Include="[USACO]Job Processing_杂题.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
