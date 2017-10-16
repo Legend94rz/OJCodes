@@ -8,12 +8,13 @@ LANG: C++
 #include <algorithm>
 #include <vector>
 #include <limits.h>
+#include <string.h>
 using namespace std;
 int n, m1, m2;
 int costA[50], costB[50];
 int curtime;
 int timeline[2000];
-vector<int> finsA(50), finsB(50);
+int finsA[50], finsB[50];
 
 int cmp(const void* a, const void* b)
 {
@@ -54,7 +55,7 @@ int main()
 	--------------------------
 	------ Data for Run 3 [length=13 bytes] ------
 	10 1 2
-	1z  
+	1  
 	2 3
 	----------------------------
 
@@ -71,7 +72,7 @@ int main()
 
 	*/
 
-	//freopen("job.in", "r", stdin); freopen("job.out", "w", stdout);
+	freopen("job.in", "r", stdin); freopen("job.out", "w", stdout);
 	cin >> n >> m1 >> m2;
 	for (int i = 0; i < m1; i++)
 		cin >> costA[i];
@@ -79,44 +80,40 @@ int main()
 		cin >> costB[i];
 	qsort(costA, m1, sizeof(int), cmp);
 	qsort(costB, m2, sizeof(int), cmp);
-
+	memcpy(finsA, costA, sizeof(costA));
+	memcpy(finsB, costB, sizeof(costB));
 	int ans = 0;
 	curtime = timeline[0];
-	for (int i = 0; i < n;)
+	for (int i = 0; i < n;i++)
 	{
-		vector<int> availables;
-		for (int j = 0; j < m1; j++)
+		int p = 0;
+		for (int j = 1; j < m1; j++)
 		{
-			if (finsA[j] <= curtime)
-				availables.push_back(j);
-		}//find available A machines
-
-		for (int j = 0; j < availables.size() && i < n; j++, i++)
-		{
-			finsA[availables[j]] = timeline[i] = max(timeline[i], curtime) + costA[availables[j]];
-			if (timeline[i] > ans)
-				ans = timeline[i];
+			if (finsA[j] < finsA[p])
+			{
+				p = j;
+			}
 		}
-		curtime = *min_element(finsA.begin(), finsA.begin() + m1);
+		timeline[i] = finsA[p];
+		if (timeline[i] > ans)
+			ans = timeline[i];
+		finsA[p] += costA[p];
 	}
 	cout << ans << ' ';
 	ans = 0;
 	curtime = timeline[0];
-	for (int i = 0; i < n; )
+	for (int i = n-1; i >=0;i-- )
 	{
-		vector<int> availables;
-		for (int j = 0; j < m2; j++)
+		int p = 0;
+		for (int j = 1; j < m2; j++)
 		{
-			if (finsB[j] <= curtime)
-				availables.push_back(j);
+			if (finsB[j] < finsB[p])
+				p = j;
 		}
-		for (int j = min((int)availables.size() - 1, n - i - 1); j >= 0 && i < n; j--, i++)
-		{
-			finsB[availables[j]] = timeline[i] = max(timeline[i], curtime) + costB[availables[j]];
-			if (timeline[i] > ans)
-				ans = timeline[i];
-		}
-		curtime = *min_element(finsB.begin(), finsB.begin() + m2);
+		timeline[i] = timeline[i] + finsB[p];
+		if (timeline[i] > ans)
+			ans = timeline[i];
+		finsB[p] += costB[p];
 	}
 	cout << ans << endl;
 
