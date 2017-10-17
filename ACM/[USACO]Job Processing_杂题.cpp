@@ -10,11 +10,11 @@ LANG: C++
 #include <limits.h>
 #include <string.h>
 using namespace std;
-int n, m1, m2;
-int costA[50], costB[50];
+int n, m[2];
+int cost[2][50];
 int curtime;
 int timeline[2000];
-int finsA[50], finsB[50];
+int fins[2][50];
 
 int cmp(const void* a, const void* b)
 {
@@ -22,106 +22,36 @@ int cmp(const void* a, const void* b)
 }
 int main()
 {
-	/*
-	----- our output ---------
-	3_5
-	---- your output ---------
-	3_7
-	--------------------------
-	------ Data for Run 1 [length=16 bytes] ------
-	5 2 3
-	1 1
-	3 1 4
-	----------------------------
-
-
-	----- our output ---------
-	5_11
-	---- your output ---------
-	5_13
-	--------------------------
-	------ Data for Run 2 [length=14 bytes] ------
-	2 2 2
-	3 5
-	8 5
-	----------------------------
-
-
-
-	----- our output ---------
-	10_14
-	---- your output ---------
-	10_4
-	--------------------------
-	------ Data for Run 3 [length=13 bytes] ------
-	10 1 2
-	1  
-	2 3
-	----------------------------
-
-	----- our output ---------
-	27_103
-	---- your output ---------
-	38_109
-	--------------------------
-	------ Data for Run 4 [length=15 bytes] ------
-	10 2 1
-	3 19
-	10
-	----------------------------
-
-	*/
-
 	freopen("job.in", "r", stdin); freopen("job.out", "w", stdout);
-	cin >> n >> m1 >> m2;
-	for (int i = 0; i < m1; i++)
-		cin >> costA[i];
-	for (int i = 0; i < m2; i++)
-		cin >> costB[i];
-	qsort(costA, m1, sizeof(int), cmp);
-	qsort(costB, m2, sizeof(int), cmp);
-	memcpy(finsA, costA, sizeof(costA));
-	memcpy(finsB, costB, sizeof(costB));
-	int ans = 0;
-	curtime = timeline[0];
-	for (int i = 0; i < n;i++)
+	cin >> n >> m[0] >> m[1];
+	for (int k = 0; k < 2; k++)
 	{
-		int p = 0;
-		for (int j = 1; j < m1; j++)
+		for (int i = 0; i < m[k]; i++)
+			cin >> cost[k][i];
+		qsort(cost[k], m[k], sizeof(int), cmp);
+		memcpy(fins[k], cost[k], sizeof(cost[k]));
+	}
+
+	int ans[2] = { 0 };
+	for (int k = 0; k < 2; k++)
+	{
+		curtime = timeline[0];
+		for (int i = (k==0)?0:(n-1); i < n && i>=0; i += k==0?1:-1)
 		{
-			if (finsA[j] < finsA[p])
+			int p = 0;
+			for (int j = 1; j < m[k]; j++)
 			{
-				p = j;
+				if (fins[k][j] < fins[k][p])
+				{
+					p = j;
+				}
 			}
+			timeline[i] = timeline[i] + fins[k][p];
+			if (timeline[i] > ans[k])
+				ans[k] = timeline[i];
+			fins[k][p] += cost[k][p];
 		}
-		timeline[i] = finsA[p];
-		if (timeline[i] > ans)
-			ans = timeline[i];
-		finsA[p] += costA[p];
 	}
-	cout << ans << ' ';
-	ans = 0;
-	curtime = timeline[0];
-	for (int i = n-1; i >=0;i-- )
-	{
-		int p = 0;
-		for (int j = 1; j < m2; j++)
-		{
-			if (finsB[j] < finsB[p])
-				p = j;
-		}
-		timeline[i] = timeline[i] + finsB[p];
-		if (timeline[i] > ans)
-			ans = timeline[i];
-		finsB[p] += costB[p];
-	}
-	cout << ans << endl;
-
-
-	//for (int i = 0; i < n; i++)
-	//{
-	//	cout << timeline[i] << endl;
-	//}
-
+	cout << ans[0] << ' ' <<ans[1]<<endl;
 	fclose(stdin); fclose(stdout);
 }
