@@ -12,7 +12,6 @@ LANG: C++
 using namespace std;
 int n, m[2];
 int cost[2][50];
-int curtime;
 int timeline[2000];
 int fins[2][50];
 
@@ -35,7 +34,6 @@ int main()
 	int ans[2] = { 0 };
 	for (int k = 0; k < 2; k++)
 	{
-		curtime = timeline[0];
 		for (int i = (k==0)?0:(n-1); i < n && i>=0; i += k==0?1:-1)
 		{
 			int p = 0;

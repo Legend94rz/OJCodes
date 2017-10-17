@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Job Processing_杂题.cpp" />
+    <ClCompile Include="[USACO]Buy Low, Buy Lower_DP.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A9E0D1D-9BE9-4A65-933D-7196409B897A}</ProjectGuid>

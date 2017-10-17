@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Job Processing_杂题.cpp">
+    <ClCompile Include="[USACO]Buy Low, Buy Lower_DP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
