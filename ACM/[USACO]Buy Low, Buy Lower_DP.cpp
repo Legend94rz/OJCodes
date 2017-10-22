@@ -3,6 +3,7 @@ ID: rz109291
 LANG: C++
 PROG: buylow
 */
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstdio>
 #include <set>
@@ -16,44 +17,12 @@ class BigNum
 public:
 	int T = 10000000;
 	int len;
-	int m[2000];
+	int m[200];
 	BigNum()
 	{
 		len = 0;
 		memset(m, 0, sizeof(m));
 	}
-	BigNum(int x)
-	{
-		len = 0;
-		memset(m, 0, sizeof(m));
-		m[0] = x;
-		for (; m[len] > 0; len++)
-		{
-			m[len + 1] = m[len] / T;
-			m[len] %= T;
-		}
-		if (len == 0)len = 1;
-	}
-	BigNum& operator+(const BigNum& b)
-	{
-		len = max(b.len, len);
-		int c = 0;
-		for (int i = 0; i < len; i++)
-		{
-			m[i] = m[i] + b.m[i] + c;
-			c = m[i] / T;
-			m[i] %= T;
-		}
-		if (c > 0) m[len++] = c;
-		return *this;
-	}
-	BigNum& operator=(const BigNum& b)
-	{
-		this->len = b.len;
-		memcpy(this->m, b.m, sizeof(b.m));
-		return *this;
-	}
-	friend ostream& operator<<(ostream&, const BigNum&);
 };
 
 int N;
@@ -61,57 +30,40 @@ unsigned int a[6000];
 int f[6000];
 BigNum cn[6000];
 
-void add(BigNum& a, const BigNum& b)
+void add(BigNum& x, const BigNum& y)
 {
-	a.len = max(b.len, a.len);
+	x.len = max(y.len, x.len);
 	int c = 0;
-	for (int i = 0; i < a.len; i++)
+	for (int i = 0; i < x.len; i++)
 	{
-		a.m[i] = a.m[i] + b.m[i] + c;
-		c = a.m[i] / a.T;
-		a.m[i] %= a.T;
+		x.m[i] = x.m[i] + y.m[i] + c;
+		c = x.m[i] / x.T;
+		x.m[i] %= x.T;
 	}
-	if (c > 0) a.m[a.len++] = c;
+	if (c > 0) x.m[x.len++] = c;
 }
-void output(const BigNum& a)
+void output(const BigNum& x)
 {
-	int a2 = ceil(log10(a.T + 1));
-	for (int i = a.len - 1; i >= 0; i--)
+	int a2 = int(ceil(log10(x.T + 1)));
+	for (int i = x.len - 1; i >= 0; i--)
 	{
-		if (i != a.len - 1)
+		if (i != x.len - 1)
 		{
-			int a1 = ceil(log10(a.m[i] + 1));
+			int a1 = int(ceil(log10(x.m[i] + 1)));
 			if (a1 == 0)a1 = 1;
 			for (int j = 0; j < a2 - a1 - 1; j++)
 			{
 				cout << '0';
 			}
 		}
-		cout << a.m[i];
+		cout << x.m[i];
 	}
-}
-
-ostream& operator<<(ostream& os, const BigNum& a)
-{
-	int a2 = ceil(log10(a.T + 1));
-	for (int i = a.len - 1; i >= 0; i--)
-	{
-		if (i != a.len - 1)
-		{
-			int a1 = ceil(log10(a.m[i] + 1));
-			if (a1 == 0)a1 = 1;
-			for (int j = 0; j < a2 - a1 - 1; j++)
-			{
-				cout << '0';
-			}
-		}
-		cout << a.m[i];
-	}
-	return os;
 }
 
 int main()
 {
+	//83_5253120000
+
 	/*
 	Here are the respective outputs:
 	----- our output ---------
@@ -163,12 +115,12 @@ int main()
 	N++;
 	f[0] = 1;
 
-	cn[0] = BigNum(1);	//
-
+	cn[0].m[0] = 1; cn[0].len = 1;
+	
 	for (int i = 1; i < N; i++)
 	{
 		int Mx = 0;
-		BigNum c(0);
+		BigNum c; c.len = 1;
 		set<unsigned int> s;
 		for (int j = i - 1; j >= 0; j--)
 		{
@@ -176,23 +128,24 @@ int main()
 			{
 				Mx = f[j];
 				s.clear();
-				c = BigNum(0);
+				c.m[0] = 0; c.len = 1;
 			}
 			if (a[j] > a[i] && f[j] == Mx)
 			{
 				if (s.find(a[j]) == s.end())
 				{
-					c = c + cn[j];//
+					add(c , cn[j]);
 					s.insert(a[j]);
 				}
 			}
 		}
 		f[i] = Mx + 1;
-		if (c.len == 1 && c.m[0] == 0)c = 1;
-		cn[i] = c;
+		if (c.len == 1 && c.m[0] == 0) { c.m[0] = 1; c.len = 1; }
+		cn[i].len = c.len;
+		memcpy(cn[i].m, c.m, sizeof(c.m));
 	}
 	cout << f[N - 1] - 1 << ' '/* << cn[N - 1] << endl*/;
-	output(cn[N - 1]);
+	output(cn[N-1]);
 	cout << endl;
 	fclose(stdin); fclose(stdout);
 }
