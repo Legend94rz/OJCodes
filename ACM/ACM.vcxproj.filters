@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Letter Game_模拟_非标准做法.cpp">
+    <ClCompile Include="[USACO]Shuttle Puzzle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
