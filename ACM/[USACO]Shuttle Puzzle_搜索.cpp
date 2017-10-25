@@ -7,28 +7,19 @@ LANG: C++
 #include <cstdio>
 #include <algorithm>
 #include <deque>
+#include <string>
 using namespace std;
 struct CHECKRES
 {
 	bool flag;
-	int targetState;
+	string targetState;
 	short pos;
 };
 short dx[] = { -2,-1,1,2 };
 short N;
-int Final;
+string Final;
 deque<short> path;
-short getBit(int x, short p)
-{
-	return (short)((x & (1 << p)) >> p);
-}
-int setBit(int x, short p, bool s)
-{
-	if (s)
-		return x | (1 << p);
-	return x & (~(1 << p));
-}
-CHECKRES check(int oriState, short p, int i)
+CHECKRES check(string oriState, short p, int i)
 {
 	CHECKRES res;
 	if (p + dx[i] < 0 || p + dx[i]>2 * N)
@@ -38,32 +29,38 @@ CHECKRES check(int oriState, short p, int i)
 	}
 	if (abs(dx[i]) == 2)
 	{
-		if (!(getBit(oriState,p+dx[i]) ^ getBit( oriState,p+dx[i]/2 )))//wrong
+		if (oriState[p+dx[i]]== oriState[p+dx[i]/2])
 		{
 			res.flag = false;
 			return res;
 		}
 	}
-	short tmp = getBit(oriState, p + dx[i]);
-	int targetState = setBit(setBit(oriState, p, (bool)(tmp & 1)), p + dx[i], 0);
-	if (targetState > oriState)
+	res.targetState = oriState;
+	char tmp = res.targetState[p];
+	res.targetState[p] = res.targetState[p + dx[i]];
+	res.targetState[p + dx[i]] = tmp;
+	if (res.targetState > oriState)
 	{
 		res.flag = false;
 		return res;
 	}
 	res.flag = true;
 	res.pos = p + dx[i];
-	res.targetState = targetState;
 	return res;
 }
-bool dfs(int state, deque<short>& ans)
+bool dfs(string state, deque<short>& ans)
 {
 	if (state == Final)
 	{
-		cout << ans[1];
+		cout << ans[1] + 1;
 		for (int i = 2; i < ans.size(); i++)
 		{
-			cout << ' ' << ans[i];
+			if (i % 20 != 1)
+			{
+				cout << ' ' << ans[i] + 1;
+			}
+			else
+				cout << endl << ans[i] + 1;
 		}cout << endl;
 		return true;
 	}
@@ -73,6 +70,7 @@ bool dfs(int state, deque<short>& ans)
 		if (res.flag)
 		{
 			ans.push_back(res.pos);
+			//cout << res.targetState << endl;
 			if ( dfs(res.targetState, ans) )
 				return true;
 			ans.pop_back();
@@ -82,10 +80,10 @@ bool dfs(int state, deque<short>& ans)
 }
 int main()
 {
-	//freopen("shuttle.in","r",stdin);freopen("shuttle.out","w",stdout);
+	freopen("shuttle.in","r",stdin);freopen("shuttle.out","w",stdout);
 	cin>>N;
-	Final = (1 << N) - 1;
-	path.push_back(N + 1);
-	dfs( ((1 << N) - 1) << (N + 1) , path );
+	Final = string(N, 'B') + 'V' + string(N, 'W');
+	path.push_back(N);
+	dfs( string(N, 'W') + 'V' + string(N, 'B'), path );
 	fclose(stdin);fclose(stdout);
 }
