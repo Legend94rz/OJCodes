@@ -77,7 +77,7 @@ void findUpper(char x, set<char>& p)
 }
 int main()
 {
-	//freopen("frameup.in", "r", stdin); freopen("frameup.out", "w", stdout);
+	freopen("frameup.in", "r", stdin); freopen("frameup.out", "w", stdout);
 	cin >> N >> M;
 	for (int i = 0; i < N; i++)
 	{
