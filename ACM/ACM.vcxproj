@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Pollutant Control_最小割边集.cpp" />
+    <ClCompile Include="[USACO]Frame Up_拓扑排序输出所有可能.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A9E0D1D-9BE9-4A65-933D-7196409B897A}</ProjectGuid>
