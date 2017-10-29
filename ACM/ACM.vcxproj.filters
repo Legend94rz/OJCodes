@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Frame Up_拓扑排序输出所有可能.cpp">
+    <ClCompile Include="[USACO]Fencing the Cows_凸包cpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
