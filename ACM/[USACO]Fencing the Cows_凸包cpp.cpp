@@ -7,11 +7,12 @@ LANG: C++
 #include <cstdio>
 #include <algorithm>
 #include <cmath>
+#include <limits.h>
 using namespace std;
 int N;
 double x[10001], y[10001], alg[1000];
-int perm[10001];
-double midx, midy;
+int perm[10001],pmin;
+double minx = INT_MAX, miny=INT_MAX;
 int stack[10001];
 int top,head;
 void Qsort(int s, int t)
@@ -52,15 +53,25 @@ int main()
 	for (int i = 0; i < N; i++)
 	{
 		cin >> x[i] >> y[i];
-		midx = midx + x[i]/N;
-		midy = midy + y[i]/N;
+		if (x[i] < minx)
+		{
+			minx = x[i];
+			pmin = i;
+		}
+		else if (y[i] < miny && x[i] == minx)
+		{
+			miny = y[i];
+			pmin = i;
+		}
 	}
-	for (int i = 0; i < N; i++)
+	double t = x[pmin]; x[pmin] = x[0]; x[0] = t;
+	t = y[pmin]; y[pmin] = y[0]; y[0] = t;
+	for (int i = 1; i < N; i++)
 	{
-		alg[i] = atan2(y[i] - midy, x[i] - midx);
+		alg[i] = atan2(y[i] - miny, x[i] - minx);
 		perm[i] = i;
 	}
-	Qsort(0,N-1);
+	Qsort(1,N-1);
 	stack[top++] = perm[0];
 	stack[top++] = perm[1];
 	for (int i = 2; i < N; i++)
@@ -70,7 +81,7 @@ int main()
 			top--;
 		}
 		stack[top++] = perm[i];
-	}
+	}/*
 	for (bool f=true;f;)
 	{
 		f = false;
@@ -84,7 +95,7 @@ int main()
 			top--;
 			f = true;
 		}
-	}
+	}*/
 	double ans = 0;
 	for (int i = head+1; i < top; i++)
 	{
