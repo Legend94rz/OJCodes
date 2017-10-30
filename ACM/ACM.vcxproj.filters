@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Fencing the Cows_凸包cpp.cpp">
+    <ClCompile Include="[USACO]Fencing the Cows_凸包.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
