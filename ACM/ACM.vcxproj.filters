@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[homework]minMaximunSum_[DP].cpp">
+    <ClCompile Include="[USACO]Fencing the Cows_凸包.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
