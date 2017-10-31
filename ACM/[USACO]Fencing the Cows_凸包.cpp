@@ -10,7 +10,7 @@ LANG: C++
 #include <limits.h>
 using namespace std;
 int N;
-double x[10001], y[10001], alg[1000];
+double x[10001], y[10001], alg[10001];
 int perm[10001],pmin;
 double minx = INT_MAX, miny=INT_MAX;
 int stack[10001];
@@ -48,19 +48,19 @@ double dist(int i, int j)
 }
 int main()
 {
-	//freopen("fc.in", "r", stdin); freopen("fc.out", "w", stdout);
+	freopen("fc.in", "r", stdin); freopen("fc.out", "w", stdout);
 	cin >> N;
 	for (int i = 0; i < N; i++)
 	{
 		cin >> x[i] >> y[i];
 		if (x[i] < minx)
 		{
-			minx = x[i];
+			minx = x[i]; miny = y[i];
 			pmin = i;
 		}
 		else if (y[i] < miny && x[i] == minx)
 		{
-			miny = y[i];
+			minx = x[i]; miny = y[i];
 			pmin = i;
 		}
 	}
@@ -81,21 +81,7 @@ int main()
 			top--;
 		}
 		stack[top++] = perm[i];
-	}/*
-	for (bool f=true;f;)
-	{
-		f = false;
-		if (top-head>=2 && !checkTop3(stack[top - 1], stack[head], stack[head+1]))
-		{
-			head++;
-			f = true;
-		}
-		if (top - head >= 2 && !checkTop3(stack[top - 2], stack[top - 1], stack[head]))
-		{
-			top--;
-			f = true;
-		}
-	}*/
+	}
 	double ans = 0;
 	for (int i = head+1; i < top; i++)
 	{
