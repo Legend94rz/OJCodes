@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Starry Night_模拟.cpp">
+    <ClCompile Include="[USACO]Musical Themes.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
