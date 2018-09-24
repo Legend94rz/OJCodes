@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Milk Measuring_Heuristics.cpp">
+    <ClCompile Include="[USACO]Canada Tour_DP%28类似floyd,没太懂%29.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
