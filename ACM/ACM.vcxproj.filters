@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Canada Tour_DP%28类似floyd,没太懂%29.cpp">
+    <ClCompile Include="[USACO]Picture_离散化染色，可用线段树优化.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
