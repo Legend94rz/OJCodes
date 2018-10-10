@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Picture_离散化染色，可用线段树优化.cpp">
+    <ClCompile Include="[USACO]Twofive_记忆化搜索.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

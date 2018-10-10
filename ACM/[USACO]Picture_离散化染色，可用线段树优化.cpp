@@ -35,6 +35,15 @@ vector<Line> hori, vert;
 int flag[30000];
 const int OFFSET = 10000;
 
+void add(int l, int r, int a)
+{
+	for (int j = l; j <= r; j++)
+	{
+		flag[j] += a;
+	}
+}
+
+
 int perimeter(vector<Line>& segs)
 {
 	int cnt = 0;
@@ -43,10 +52,10 @@ int perimeter(vector<Line>& segs)
 	for (int i = 0; i < segs.size(); i++)
 	{
 		Line& l = segs[i];
-		for (int j = l.s; j < l.t; j++)
+		add(OFFSET + l.s, OFFSET + l.t - 1, l.type);
+		for (int j = OFFSET + l.s; j < OFFSET + l.t; j++)
 		{
-			flag[j + OFFSET] += l.type;
-			if (l.type == 1 && flag[j + OFFSET] == 1 || l.type == -1 && flag[j + OFFSET] == 0)
+			if (l.type == 1 && flag[j] == 1 || l.type == -1 && flag[j] == 0)
 				cnt++;
 		}
 	}

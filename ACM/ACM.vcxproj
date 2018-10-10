@@ -11,10 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Picture_离散化染色，可用线段树优化.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="[USACO]Twofive_记忆化搜索.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A9E0D1D-9BE9-4A65-933D-7196409B897A}</ProjectGuid>
