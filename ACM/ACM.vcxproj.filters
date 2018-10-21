@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Twofive_记忆化搜索.cpp">
+    <ClCompile Include="[USACO]Cow XOR_Trie树.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
