@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Cow XOR_Trie树.cpp">
+    <ClCompile Include="[USACO]Fence Rails_搜索解决高维背包.cpp">
       <SubType>
       </SubType>
     </ClCompile>
