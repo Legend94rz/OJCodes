@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Fence Rails_搜索解决高维背包.cpp">
+    <ClCompile Include="[USACO]Closed Fences_计算几何.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

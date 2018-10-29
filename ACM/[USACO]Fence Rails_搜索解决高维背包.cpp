@@ -42,9 +42,9 @@ bool dfs(int it, int st, int* rest, int curWaste, const int maxWaste)
 		{
 			rest[i] -= cost[it];
 			int k = 0, J;
-			if (rest[i] < cost[1])
+			if (rest[i] < cost[1])			//剪枝1：统计浪费掉的空间
 				k = rest[i];
-			if (cost[it - 1] == cost[it])
+			if (cost[it - 1] == cost[it])	//剪枝2：如果两个物品相同，则下次搜索直接从当前背包开始搜索。(对称性)
 				J = i;
 			else
 				J = 1;
