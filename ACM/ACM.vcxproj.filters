@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]All Latin Squares_搜索_一组打表.cpp">
+    <ClCompile Include="[USACO]Betsy%27s Tour_搜索.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
