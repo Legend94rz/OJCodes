@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Closed Fences_计算几何.cpp">
+    <ClCompile Include="[USACO]All Latin Squares_搜索_一组打表.cpp">
       <SubType>
       </SubType>
     </ClCompile>
