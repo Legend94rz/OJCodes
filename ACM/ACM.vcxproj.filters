@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[USACO]Betsy%27s Tour_搜索.cpp">
+    <ClCompile Include="[LeetCode]25.k个一组翻转链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
