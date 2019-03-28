@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[LeetCode]25.k个一组翻转链表.cpp">
+    <ClCompile Include="[POJ]1141_Brackets Sequence_dp_方案.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
