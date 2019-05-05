@@ -1,76 +1,64 @@
 #include <iostream>
+#include <stack>
 using namespace std;
 
-int A[400000], sm[400000];
-int N, Q, E, x;
+void* st[10000];
+int top;
 
-void build_tree(int l, int r, int x)
-{
-	if (l == r)
-	{
-		A[x] = 1; sm[x] = 1; return;
-	}
-	int k = (l + r) >> 1;
-	build_tree(l, k, x << 1);
-	build_tree(k + 1, r, (x << 1) + 1);
-	sm[x] = sm[x << 1] + sm[(x << 1) + 1];
-}
 
-void update(int a, int b, int l, int r, int x, int v)
+struct Node
 {
-	if (a == l && b == r)
-	{
-		A[x] = v;
-		sm[x] = v;
-		return;
-	}
-	int k = (a + b) >> 1;
-	if (l > k)
-		update(k + 1, b, l, r, (x << 1) + 1, v);
-	else if (r<=k)
-		update(a, k, l, r, x << 1, v);
-	else
-	{
-		update(a, k, l, k, x << 1, v);
-		update(k + 1, b, k + 1, r, x, v);
-	}
-	sm[x] = sm[x << 1] + sm[(x << 1) + 1];
-}
+	Node* left;
+	Node* right;
+	int val;
+};
 
-int ask(int a, int b, int l, int r, int x)
+#define RETURN 				 \
+{							 \
+int addr = (int)st[top--];	 \
+if (addr == 1)				 \
+	goto RETURN1;			 \
+if (addr == 2)				 \
+	goto RETURN2;			 \
+}							 \
+
+
+
+void F()
 {
-	if (a == l && b == r)
-		return sm[x];
-	int k = (a + b) >> 1;
-	if (r <= k)
-		return ask(a, k, l, r, x << 1);
-	else if (l > k)
-		return ask(k + 1, b, l, r, (x << 1) + 1);
-	return ask(a, k, l, k, x << 1) + ask(k + 1, b, k + 1, r, (x << 1) + 1);
+BEGIN:
+	Node* p = NULL; 
+	p = (Node*)st[top - 1];
+	if (p == NULL)
+	{
+		RETURN
+	}
+	cout << p->val << endl;
+	st[++top] = (void*)p->left;
+	st[++top] = (void*)1;
+	goto BEGIN;
+RETURN1:
+	top -= 1;
+
+	p = (Node*)st[top - 1];
+	st[++top] = (void*)p->right;
+	st[++top] = (void*)2;
+	goto BEGIN;
+RETURN2:
+	top -= 1;
+	RETURN
 }
 
 int main()
 {
-	cin >> N;
-	cin >> Q;
-	build_tree(1, N, 1);
-	int loc = 1;
-	for (int i = 0; i < Q; i++)
-	{
+	Node* root = new Node(); root->val = 1;
+	Node* n1 = new Node(); root->left = n1; n1->val = 2;
+	Node* n2 = new Node(); root->right = n2; n2->val = 3;
+	Node* n3 = new Node(); n1->left = n3; n3->val = 4;
+	Node* n4 = new Node(); n1->right= n4; n4->val = 5;
 
-		cin >> E >> x;
-		if (E == 1)
-		{
-			update(1, N, loc, loc, 1, 0);
-			loc++;
-		}
-		else if (E == 2)
-		{
-			update(1, N, x, x, 1, 0);
-		}
-		else if (E == 3)
-		{
-			cout << ask(1, N, 1, x, 1)<<endl;
-		}
-	}
+
+	st[++top] = root;
+	st[++top] = 0;
+	F();
 }
