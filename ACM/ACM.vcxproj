@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[HDU]5056Boring count_滑窗统计.cpp" />
+    <ClCompile Include="[COGS]91方格取数_NOIP00_DP.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A9E0D1D-9BE9-4A65-933D-7196409B897A}</ProjectGuid>

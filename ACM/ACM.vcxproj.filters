@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[HDU]5056Boring count_滑窗统计.cpp">
+    <ClCompile Include="[COGS]91方格取数_NOIP00_DP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
