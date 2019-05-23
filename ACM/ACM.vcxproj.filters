@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Test.cpp">
+    <ClCompile Include="[POJ]3254_Corn Fields_状压DP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
