@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[POJ]3254_Corn Fields_状压DP.cpp" />
+    <ClCompile Include="[COGS]2561[NOIP 2016]-愤怒的小鸟-状压DP.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A9E0D1D-9BE9-4A65-933D-7196409B897A}</ProjectGuid>
