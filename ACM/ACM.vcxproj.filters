@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[GCJK]2018RoundC_Fairies and Witches_模拟_位集.cpp">
+    <ClCompile Include="[COGS]111[NOIP05]过河_DP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
