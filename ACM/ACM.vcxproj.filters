@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="[COGS]637排序测试.cpp">
+    <ClCompile Include="[GCJK]2018_RoundD2_Paragliding.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
